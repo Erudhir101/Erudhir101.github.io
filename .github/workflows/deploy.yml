@@ -30,6 +30,10 @@ jobs:
         run: bun run lint
         continue-on-error: false
 
+      - name: Run tests
+        run: bun test
+        continue-on-error: false
+
       - name: Build application
         run: bun run build
 
