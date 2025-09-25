@@ -1,5 +1,4 @@
 <script lang="ts">
-	import { resolve } from '$app/paths';
 	import Search from 'lucide-svelte/icons/search';
 	let { data } = $props();
 	let search = $state('');
