@@ -16,9 +16,9 @@
 	title: string,
 	description: string,
 	tags: string[],
-	link: string = 'https://google.com'
+	link: string = 'https://svelte.dev'
 )}
-	<a href={link} target="_blank">
+	<a href={link} target="_blank" {...link.startsWith('https') ? { rel: 'external' } : {}}>
 		<div
 			class="group card h-full border border-transparent bg-base-100 shadow-sm transition-all duration-300 hover:-translate-y-5 hover:border-accent sm:w-100"
 		>
@@ -58,7 +58,7 @@
 	link: string,
 	date: string
 )}
-	<a href={link} target="_blank">
+	<a href={link} {...link.startsWith('https') ? { rel: 'external' } : {}}>
 		<div
 			class="group card h-full border border-transparent bg-base-100 shadow-sm transition-all duration-300 hover:-translate-y-3 hover:shadow-warning sm:w-100"
 		>
@@ -117,6 +117,7 @@
 			<div class="flex items-center justify-center gap-5 sm:justify-start">
 				<a
 					href="https://www.github.com/erudhir101"
+					rel="external"
 					aria-label="social medias"
 					class="transition-all duration-200 hover:-translate-y-1 hover:text-violet-600 dark:hover:text-violet-400"
 				>
@@ -124,6 +125,7 @@
 				</a>
 				<a
 					href="https://www.Linkedin.com/erudhir101"
+					rel="external"
 					aria-label="social medias"
 					class="transition-all duration-200 hover:-translate-y-1 hover:text-blue-600 dark:hover:text-blue-400"
 				>

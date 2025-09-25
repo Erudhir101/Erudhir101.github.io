@@ -39,9 +39,44 @@ export type Project = {
 
 type DateStyle = Intl.DateTimeFormatOptions['dateStyle'];
 
-export function formatDate(date: string, dateStyle: DateStyle = 'long', locales = 'pt') {
-	// Safari is mad about dashes in the date
-	const dateToFormat = new Date(date.replaceAll('-', '/'));
-	const dateFormatter = new Intl.DateTimeFormat(locales, { dateStyle });
-	return dateFormatter.format(dateToFormat);
+export function formatDate(dateInput: string | Date, style: DateStyle = 'full'): string {
+	try {
+		// Handle different input types
+		let date: Date;
+
+		if (typeof dateInput === 'string') {
+			date = new Date(dateInput);
+		} else if (dateInput instanceof Date) {
+			date = dateInput;
+		} else {
+			// Fallback to current date if input is invalid
+			console.warn('Invalid date input, using current date:', dateInput);
+			date = new Date();
+		}
+
+		// Check if date is valid
+		if (isNaN(date.getTime())) {
+			console.warn('Invalid date value, using current date:', dateInput);
+			date = new Date();
+		}
+
+		const options: Intl.DateTimeFormatOptions =
+			style === 'short'
+				? {
+						year: 'numeric',
+						month: 'short',
+						day: 'numeric'
+					}
+				: {
+						year: 'numeric',
+						month: 'long',
+						day: 'numeric',
+						weekday: 'long'
+					};
+
+		return date.toLocaleDateString('pt-BR', options);
+	} catch (error) {
+		console.error('Error formatting date:', error);
+		return new Date().toLocaleDateString('pt-BR');
+	}
 }

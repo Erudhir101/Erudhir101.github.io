@@ -22,9 +22,9 @@
 				{#each links as link (link)}
 					<a
 						href={resolve(link)}
-						class="link {'/' + link === selectedLink
+						class="link {link.slice(0, -1) === selectedLink
 							? 'link-primary'
-							: 'link-hover'} font-semibold underline-offset-3">{link}</a
+							: 'link-hover'} font-semibold underline-offset-3">{link.slice(1, -1)}</a
 					>
 				{/each}
 			</div>

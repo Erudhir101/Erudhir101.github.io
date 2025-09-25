@@ -1,4 +1,5 @@
-<script>
+<script lang="ts">
+	import { resolve } from '$app/paths';
 	import Search from 'lucide-svelte/icons/search';
 	let { data } = $props();
 	let search = $state('');
@@ -32,7 +33,7 @@
 			</h3>
 			<div class="flex w-full flex-col gap-5">
 				{#each posts as post (post.title)}
-					<a href="./blog/{post.slug}">
+					<a href="/blog/{post.slug}">
 						<div
 							class="card w-full bg-base-100 shadow-sm transition-colors duration-200 hover:text-secondary"
 						>
