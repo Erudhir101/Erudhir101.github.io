@@ -1,5 +1,6 @@
 <script lang="ts">
 	import Search from 'lucide-svelte/icons/search';
+	import { base } from '$app/paths';
 	let { data } = $props();
 	let search = $state('');
 	let posts = $derived(
@@ -32,7 +33,7 @@
 			</h3>
 			<div class="flex w-full flex-col gap-5">
 				{#each posts as post (post.title)}
-					<a href="/blog/{post.slug}">
+					<a href="{base}/blog/{post.slug}">
 						<div
 							class="card w-full bg-base-100 shadow-sm transition-colors duration-200 hover:text-secondary"
 						>
